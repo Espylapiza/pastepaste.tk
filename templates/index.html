@@ -7,32 +7,30 @@
 	<meta name="robots" content="noindex,nofollow" />
 	<title>pizzaq!</title>
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/jquery.scrollbar.min.css') }}">
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/style.min.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/style.css') }}">
 	<script src="{{ url_for('static',filename='javascript/jquery.min.js') }}"></script>
 	<script src="{{ url_for('static',filename='javascript/jquery.scrollbar.min.js') }}"></script>
-	<script src="{{ url_for('static',filename='javascript/application.min.js') }}"></script>
+	<script src="{{ url_for('static',filename='javascript/application.js') }}"></script>
 </head>
 
 <body>
-	<div style="display:block;position:absolute;left:1em;top:2.14em;margin:0;padding:0;height:200px;width:1.8em;">
+	<div style="display:block;position:absolute;left:1em;top:1.34em;margin:0;padding:0;height:200px;width:1.8em;">
 		<ul class="static" style="list-style:none;left:0;top:0;margin:0;padding:0 0 0 0;text-align: center;">
 			<li id="text">{{ symbol }}</li>
 			<li id="help" style="opacity:0.25">?</li>
 		</ul>
 	</div>
-	<div style="display:block;position:absolute;left:3.6em;top:2em;width:calc(100vw - 6em);height:calc(100vh - 4em);">
-		<div id="textbox-frame">
+	<div style="display:block;position:absolute;left:3.6em;top:1.2em;width:calc(100vw - 6em);height:calc(100vh - 2.4em);">
+		<form id="textbox-form">
 			<textarea id="textbox" class="textarea-scrollbar scrollbar-outer" {{ attr }} style="z-index:1">{{ text }}</textarea>
-		</div>
-		<div id="helpbox-frame">
-			<textarea id="helpbox" class="textarea-scrollbar scrollbar-outer" readonly>
-Usage
-
-Ctrl + S: Save
-Ctrl + R: Raw
-
-Website: https://github.com/Espylapiza/pizzaq</textarea>
-		</div>
+		</form>
+		<form id="helpbox-form" style="display:none;margin-top: 0.14em">
+			Usage<br /><br />
+			Ctrl + S: <a id="save" href="{{ url_for('paste') }}">Save</a><br />
+			Ctrl + R: <a id="raw" href="{{ url_for('paste') }}">Raw</a><br /><br /><br />
+			<a href="https:/pizzaq.tk">Website</a>
+			<a href="https://github.com/Espylapiza/pizzaq/" target="_blank">Github</a>
+		</form>
 	</div>
 </body>
 

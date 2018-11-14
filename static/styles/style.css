@@ -524,10 +524,6 @@ pre {
     tab-size: 4;
 }
 
-textarea {
-    color: #bbbbbb;
-}
-
 ::selection {
     background: #ffffff44;
 }
@@ -541,7 +537,7 @@ li {
 /*************** GENERAL STYLES ***************/
 
 * {
-    color: #dddddd;
+    color: #cccccc;
     font-family: Monospace;
     font-size: 1em;
 }

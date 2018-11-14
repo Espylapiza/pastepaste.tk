@@ -24,7 +24,7 @@ def create_app():
 
 app = create_app()
 
-#app.config['SEND_FILE_MAX_AGE_DEFAULT'] = timedelta(seconds=1)
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = timedelta(seconds=1)
 
 
 @app.route('/', methods=['GET'])

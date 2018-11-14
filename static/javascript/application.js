@@ -1,12 +1,52 @@
 jQuery(document).ready(function () {
+    const trans = 0.25;
     var $textbox = $("#textbox");
-    var $helpbox = $("#helpbox");
-    var $textbox_frame = $("#textbox-frame");
-    var $helpbox_frame = $("#helpbox-frame");
+    var $textbox_form = $("#textbox-form");
+    var $helpbox_form = $("#helpbox-form");
     var current = 1;
-    var saving = false;
-    $textbox_frame.show();
-    $helpbox_frame.hide();
+    var is_saving = false;
+    $.fn.save = function () {
+        if (window.location.pathname == '/') {
+            if (is_saving) {
+                return;
+            }
+            is_saving = true;
+            var data = $textbox.val();
+            if (data) {
+                $.post("/paste/", data,
+                    function (key, status) {
+                        if (status == 'success') {
+                            window.location.replace(key);
+                        }
+                        is_saving = false;
+                    });
+            } else {
+                is_saving = false;
+            }
+        }
+    }
+    $.fn.raw = function () {
+        if (window.location.pathname == '/') {
+            if (is_saving) {
+                return;
+            }
+            is_saving = true;
+            var data = $textbox.val();
+            if (data) {
+                $.post("/paste/", data,
+                    function (key, status) {
+                        if (status == 'success') {
+                            window.location.replace(key + '/raw');
+                        }
+                        is_saving = false;
+                    });
+            } else {
+                is_saving = false;
+            }
+        } else {
+            window.location = 'raw';
+        }
+    }
     jQuery('.textarea-scrollbar').scrollbar();
     $(window).bind('keydown', function (event) {
         if (event.ctrlKey || event.metaKey) {
@@ -15,54 +55,26 @@ jQuery(document).ready(function () {
                     event.preventDefault();
                     if (current == 1) {
                         $textbox.select();
-                    } else {
-                        $helpbox.select();
                     }
                     break;
                 case 's':
                     event.preventDefault();
-                    if (current == 1) {
-                        if (window.location.pathname == '/') {
-                            var data = $textbox.val();
-                            if (data) {
-                                if (saving) {
-                                    break;
-                                }
-                                saving = true;
-                                $.post("/paste/", data,
-                                    function (key, status) {
-                                        if (status == 'success') {
-                                            window.location = key;
-                                        }
-                                        saving = false;
-                                    });
-                            }
-                        }
-                    }
+                    $.fn.save();
                     break;
                 case 'r':
                     event.preventDefault();
-                    if (window.location.pathname == '/') {
-                        var data = $textbox.val();
-                        if (data) {
-                            if (saving) {
-                                break;
-                            }
-                            saving = true;
-                            $.post("/paste/", data,
-                                function (key, status) {
-                                    if (status == 'success') {
-                                        window.location = key + "/raw";
-                                    }
-                                    saving = false;
-                                });
-                        }
-                    } else {
-                        window.location = 'raw';
-                    }
+                    $.fn.raw();
                     break;
             }
         }
+    });
+    $("a#save").click(function () {
+        $.fn.save();
+        return false;
+    });
+    $("a#raw").click(function () {
+        $.fn.raw();
+        return false;
     });
     $textbox.keydown(function (e) {
         if (e.keyCode === 9) {
@@ -80,11 +92,11 @@ jQuery(document).ready(function () {
     $("#text").click(function () {
         if (current != 1) {
             current = 1;
-            $textbox_frame.fadeIn(500);
-            $helpbox_frame.fadeOut(500);
+            $textbox_form.fadeIn(500);
+            $helpbox_form.fadeOut(500);
             $textbox.focus();
             $(this).fadeTo(200, 1);
-            $("#help").fadeTo(200, 0.25);
+            $("#help").fadeTo(200, trans);
         }
     }
     );
@@ -98,17 +110,17 @@ jQuery(document).ready(function () {
     $("#text").mouseleave(function () {
         if (current != 1) {
             $(this).stop();
-            $(this).fadeTo(200, 0.25);
+            $(this).fadeTo(200, trans);
         }
     }
     );
     $("#help").click(function () {
         if (current != 2) {
             current = 2;
-            $textbox_frame.fadeOut(500);
-            $helpbox_frame.fadeIn(500);
+            $textbox_form.fadeOut(500);
+            $helpbox_form.fadeIn(500);
             $(this).fadeTo(200, 1);
-            $("#text").fadeTo(200, 0.25);
+            $("#text").fadeTo(200, trans);
         }
     }
     );
@@ -122,7 +134,7 @@ jQuery(document).ready(function () {
     $("#help").mouseleave(function () {
         if (current != 2) {
             $(this).stop();
-            $(this).fadeTo(200, 0.25);
+            $(this).fadeTo(200, trans);
         }
     }
     );
