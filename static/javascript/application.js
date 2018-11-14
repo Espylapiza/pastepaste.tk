@@ -21,14 +21,14 @@ jQuery(document).ready(function () {
                     break;
                 case 's':
                     event.preventDefault();
-                    if (saving) {
-                        break;
-                    }
-                    saving = true;
                     if (current == 1) {
                         if (window.location.pathname == '/') {
                             var data = $textbox.val();
                             if (data) {
+                                if (saving) {
+                                    break;
+                                }
+                                saving = true;
                                 $.post("/paste/", data,
                                     function (key, status) {
                                         if (status == 'success') {
@@ -42,13 +42,13 @@ jQuery(document).ready(function () {
                     break;
                 case 'r':
                     event.preventDefault();
-                    if (saving) {
-                        break;
-                    }
-                    saving = true;
                     if (window.location.pathname == '/') {
                         var data = $textbox.val();
                         if (data) {
+                            if (saving) {
+                                break;
+                            }
+                            saving = true;
                             $.post("/paste/", data,
                                 function (key, status) {
                                     if (status == 'success') {
