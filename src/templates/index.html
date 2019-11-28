@@ -21,16 +21,19 @@
 			<li id="help" style="opacity:0.25">?</li>
 		</ul>
 	</div>
-	<div style="display:block;position:absolute;left:3.6em;top:1.2em;width:calc(100vw - 6em);height:calc(100vh - 2.4em);">
+	<div
+		style="display:block;position:absolute;left:3.6em;top:1.2em;width:calc(100vw - 6em);height:calc(100vh - 2.4em);">
 		<form id="textbox-form">
-			<textarea id="textbox" class="textarea-scrollbar scrollbar-outer" {{ attr }} style="z-index:1">{{ text }}</textarea>
+			<textarea id="textbox" class="textarea-scrollbar scrollbar-outer" {{ attr }}
+				style="z-index:1">{{ text }}</textarea>
 		</form>
 		<form id="helpbox-form" style="display:none;margin-top: 0.14em">
 			Usage<br /><br />
 			Ctrl + S: <a id="save" href="{{ url_for('paste') }}">Save</a><br />
-			Ctrl + R: <a id="raw" href="{{ url_for('paste') }}">Raw</a><br /><br /><br />
-			<a href="https://pizzaq.tk">Website</a>
-			<a href="https://github.com/Espylapiza/pizzaq/" target="_blank">Github</a>
+			Ctrl + R: <a id="raw" href="{{ url_for('paste') }}">Save as raw</a><br /><br /><br />
+			<a href="https://pizzaq.tk">Website: https://pizzaq.tk</a> <br />
+			<a href="https://github.com/Espylapiza/pizzaq" target="_blank">Github:
+				https://github.com/Espylapiza/pizzaq</a>
 		</form>
 	</div>
 </body>
