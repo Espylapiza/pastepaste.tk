@@ -7,6 +7,7 @@ from datetime import timedelta
 cur_uid = 1
 
 config_file = "uid"
+os.makedirs("data/", exist_ok=True)
 
 
 def create_app():
@@ -35,6 +36,7 @@ def index():
 @app.route("/paste/", methods=["POST"])
 def paste():
     global cur_uid
+    print(cur_uid, "aaa")
     data = request.get_data(as_text=True)
     cur_uid += 1
     with open(config_file, "w") as f:
@@ -70,7 +72,7 @@ def view_raw(uid):
 
 
 @app.route("/<uid>/html", methods=["GET"])
-def view_raw(uid):
+def view_html(uid):
     if uid.isdigit and len(uid) <= 6:
         addr = "data/" + str(uid)
         if os.path.isfile(addr):
@@ -88,4 +90,4 @@ def page_not_found(e):
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=8080)
+    app.run(host="0.0.0.0", port=8081)
