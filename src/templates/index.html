@@ -2,40 +2,43 @@
 <html>
 
 <head>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width,initial-scale=1" />
-	<meta name="robots" content="noindex,nofollow" />
-	<title>pastepaste!</title>
-	<link rel="icon" type="image/png" href="{{ url_for('static',filename='materials/pastepaste.png') }}">
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/jquery.scrollbar.min.css') }}">
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/style.min.css') }}">
-	<script src="{{ url_for('static',filename='javascript/jquery.min.js') }}"></script>
-	<script src="{{ url_for('static',filename='javascript/jquery.scrollbar.min.js') }}"></script>
-	<script src="{{ url_for('static',filename='javascript/application.min.js') }}"></script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="robots" content="noindex,nofollow" />
+    <title>pastepaste!</title>
+    <link rel="icon" type="image/png" href="{{ url_for('static',filename='materials/pastepaste.png') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/jquery.scrollbar.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/style.min.css') }}">
+    <script src="{{ url_for('static',filename='javascript/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='javascript/jquery.scrollbar.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='javascript/application.min.js') }}"></script>
 </head>
 
 <body>
-	<div style="display:block;position:absolute;left:1em;top:1.34em;margin:0;padding:0;height:200px;width:1.8em;">
-		<ul class="static" style="list-style:none;left:0;top:0;margin:0;padding:0 0 0 0;text-align: center;">
-			<li id="text">{{ symbol }}</li>
-			<li id="help" style="opacity:0.25">?</li>
-		</ul>
-	</div>
-	<div
-		style="display:block;position:absolute;left:3.6em;top:1.2em;width:calc(100vw - 6em);height:calc(100vh - 2.4em);">
-		<form id="textbox-form">
-			<textarea id="textbox" class="textarea-scrollbar scrollbar-outer" {{ attr }}
-				style="z-index:1">{{ text }}</textarea>
-		</form>
-		<form id="helpbox-form" style="display:none;margin-top: 0.14em">
-			Usage<br /><br />
-			Ctrl + S: <a id="save" href="{{ url_for('paste') }}">Save</a><br />
-			Ctrl + R: <a id="raw" href="{{ url_for('paste') }}">Save as raw</a><br /><br /><br />
-			<a href="https://pastepaste.tk">Website: https://pastepaste.tk</a> <br />
-			<a href="https://github.com/Espylapiza/pastepaste" target="_blank">Github:
-				https://github.com/Espylapiza/pastepaste</a>
-		</form>
-	</div>
+    <div style="display:block;position:absolute;left:1em;top:1.34em;margin:0;padding:0;height:200px;width:1.8em;">
+        <ul class="static" style="list-style:none;left:0;top:0;margin:0;padding:0 0 0 0;text-align: center;">
+            <li id="text">{{ symbol }}</li>
+            <li id="help" style="opacity:0.25">?</li>
+        </ul>
+    </div>
+    <div
+        style="display:block;position:absolute;left:3.6em;top:1.2em;width:calc(100vw - 6em);height:calc(100vh - 2.4em);">
+        <form id="textbox-form">
+            <textarea id="textbox" class="textarea-scrollbar scrollbar-outer" {{ attr }}
+                style="z-index:1">{{ text }}</textarea>
+        </form>
+        <form id="helpbox-form" style="display:none;margin-top: 0.14em">
+            Usage<br />
+            <br />
+            Save: Ctrl + S or <a id="save" href="{{ url_for('paste') }}">Click here</a><br />
+            To browse as raw, first save the text and then visit https://pastepaste.tk/[number]/raw.<br />
+            To browse as html, first save the text and then visit https://pastepaste.tk/[number]/html.<br />
+            <br />
+            <a href="https://pastepaste.tk">Website: https://pastepaste.tk</a> <br />
+            <a href="https://github.com/Espylapiza/pastepaste.tk" target="_blank">Github:
+                https://github.com/Espylapiza/pastepaste</a>
+        </form>
+    </div>
 </body>
 
 </html>

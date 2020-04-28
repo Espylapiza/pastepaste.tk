@@ -61,19 +61,11 @@ jQuery(document).ready(function () {
                     event.preventDefault();
                     $.fn.save();
                     break;
-                case 'r':
-                    event.preventDefault();
-                    $.fn.raw();
-                    break;
             }
         }
     });
     $("a#save").click(function () {
         $.fn.save();
-        return false;
-    });
-    $("a#raw").click(function () {
-        $.fn.raw();
         return false;
     });
     $textbox.keydown(function (e) {
